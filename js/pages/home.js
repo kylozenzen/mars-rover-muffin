@@ -145,7 +145,7 @@ function showNewClientModal() {
   var rowStyle   = 'margin-bottom:8px;';
 
   window.sheet(
-    '<div style="padding:0 16px 4px">'
+    '<div style="padding:4px 16px 4px">'
     + '<div style="font-family:Space Grotesk,sans-serif;font-size:17px;font-weight:900;margin-bottom:2px">New client</div>'
     + '<div style="font-size:12px;color:#adada9;margin-bottom:14px">Projects come after.</div>'
 
