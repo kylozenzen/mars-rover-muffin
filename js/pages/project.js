@@ -359,21 +359,22 @@ function submitComment(pid, postid) {
 }
 
 function showAddPostModal() {
+  var M = window._MS;
   var p = window.activeProject();
   if (!p) return;
   window.sheet(
-    '<div style="padding:0 20px 8px">'
-    + '<div style="font-family:Space Grotesk,sans-serif;font-size:20px;font-weight:900;margin-bottom:4px">Add content</div>'
-    + '<div style="font-size:13px;color:#5b5c58;margin-bottom:20px">Add a piece of content to send for client review.</div>'
-    + '<label class="field-label">Title</label>'
-    + '<input id="ap-title" class="field-input" type="text" placeholder="Campaign Hero Shot" style="margin-bottom:14px">'
-    + '<label class="field-label">Caption</label>'
-    + '<textarea id="ap-caption" class="field-input" placeholder="Write your caption..." rows="3" style="resize:none;margin-bottom:14px"></textarea>'
-    + '<label class="field-label">Image URL</label>'
-    + '<input id="ap-image" class="field-input" type="url" placeholder="https://..." style="margin-bottom:14px">'
-    + '<label class="field-label">Platform</label>'
-    + '<input id="ap-platform" class="field-input" type="text" placeholder="Instagram, Twitter/X..." style="margin-bottom:20px">'
-    + '<button onclick="addPost()" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:14px;padding:14px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:15px;cursor:pointer">Add to project</button>'
+    '<div style="' + M.wrap + '">'
+    + '<div style="' + M.title + '">Add content</div>'
+    + '<div style="' + M.sub + '">Add a piece for client review.</div>'
+    + '<div style="' + M.row + '"><div style="' + M.label + '">Title</div>'
+    + '<input id="ap-title" type="text" placeholder="Campaign Hero Shot" autocomplete="new-password" style="' + M.input + '"></div>'
+    + '<div style="' + M.row + '"><div style="' + M.label + '">Caption</div>'
+    + '<textarea id="ap-caption" placeholder="Write your caption..." rows="3" style="' + M.input + ';resize:none;line-height:1.4"></textarea></div>'
+    + '<div style="' + M.row + '"><div style="' + M.label + '">Image URL</div>'
+    + '<input id="ap-image" type="url" placeholder="https://..." autocomplete="new-password" style="' + M.input + '"></div>'
+    + '<div style="margin-bottom:4px"><div style="' + M.label + '">Platform</div>'
+    + '<input id="ap-platform" type="text" placeholder="Instagram, Twitter/X..." autocomplete="new-password" style="' + M.input + '"></div>'
+    + '<button onclick="addPost()" class="hs" style="' + M.btnPri + '">Add to project</button>'
     + '</div>'
   );
 }

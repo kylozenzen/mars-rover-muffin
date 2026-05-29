@@ -134,37 +134,26 @@ var CLIENT_COLORS = [
 ];
 
 function showNewClientModal() {
+  var M = window._MS;
   var swatches = CLIENT_COLORS.map(function(c, i) {
-    return '<div onclick="selectClientColor(' + i + ')" data-ci="' + i + '" style="width:28px;height:28px;border-radius:8px;background:' + c.bg + ';cursor:pointer;border:3px solid ' + (i === 0 ? '#2e2f2c' : 'transparent') + ';flex-shrink:0" class="hs"></div>';
+    return '<div onclick="selectClientColor(' + i + ')" data-ci="' + i + '" style="width:26px;height:26px;border-radius:7px;background:' + c.bg + ';cursor:pointer;border:2.5px solid ' + (i === 0 ? '#2e2f2c' : 'transparent') + ';flex-shrink:0" class="hs"></div>';
   }).join('');
-
   window._selectedClientColor = 0;
-
-  var fieldStyle = 'width:100%;background:#f1f1ec;border:2px solid transparent;border-radius:8px;padding:8px 10px;font-family:Manrope,sans-serif;font-size:13px;outline:none;box-sizing:border-box;-webkit-appearance:none;';
-  var labelStyle = 'font-family:Plus Jakarta Sans,sans-serif;font-size:11px;font-weight:700;color:#5b5c58;display:block;margin-bottom:3px;';
-  var rowStyle   = 'margin-bottom:8px;';
-
   window.sheet(
-    '<div style="padding:4px 16px 4px">'
-    + '<div style="font-family:Space Grotesk,sans-serif;font-size:17px;font-weight:900;margin-bottom:2px">New client</div>'
-    + '<div style="font-size:12px;color:#adada9;margin-bottom:14px">Projects come after.</div>'
-
-    + '<div style="' + rowStyle + '"><label style="' + labelStyle + '">Company or brand</label>'
-    + '<input id="nc-company" type="text" placeholder="Nike, Adobe, Acme Co..." autocomplete="new-password" style="' + fieldStyle + '"></div>'
-
-    + '<div style="' + rowStyle + '"><label style="' + labelStyle + '">Contact name</label>'
-    + '<input id="nc-name" type="text" placeholder="Sarah Chen" autocomplete="new-password" style="' + fieldStyle + '"></div>'
-
-    + '<div style="margin-bottom:12px"><label style="' + labelStyle + '">Contact email</label>'
-    + '<input id="nc-email" type="email" placeholder="sarah@brand.com" autocomplete="new-password" style="' + fieldStyle + '"></div>'
-
-    + '<label style="' + labelStyle + '">Brand color</label>'
-    + '<div style="display:flex;gap:5px;margin-bottom:14px">' + swatches + '</div>'
-
-    + '<button onclick="createClient()" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:10px;padding:12px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:14px;cursor:pointer">Add client</button>'
+    '<div style="' + M.wrap + '">'
+    + '<div style="' + M.title + '">New client</div>'
+    + '<div style="' + M.sub + '">Projects come after.</div>'
+    + '<div style="' + M.row + '"><div style="' + M.label + '">Company or brand</div>'
+    + '<input id="nc-company" type="text" placeholder="Nike, Adobe, Acme Co..." autocomplete="new-password" style="' + M.input + '"></div>'
+    + '<div style="' + M.row + '"><div style="' + M.label + '">Contact name</div>'
+    + '<input id="nc-name" type="text" placeholder="Sarah Chen" autocomplete="new-password" style="' + M.input + '"></div>'
+    + '<div style="margin-bottom:10px"><div style="' + M.label + '">Contact email</div>'
+    + '<input id="nc-email" type="email" placeholder="sarah@brand.com" autocomplete="new-password" style="' + M.input + '"></div>'
+    + '<div style="' + M.label + '">Brand color</div>'
+    + '<div style="display:flex;gap:5px;margin-bottom:4px">' + swatches + '</div>'
+    + '<button onclick="createClient()" class="hs" style="' + M.btnPri + '">Add client</button>'
     + '</div>'
   );
-
   setTimeout(function() { var el = document.getElementById('nc-company'); if (el) el.focus(); }, 60);
 }
 
@@ -213,33 +202,27 @@ function createClient() {
 // ─── NEW PROJECT MODAL ───────────────────────────────────────────────────────
 
 function showNewProjectModal(clientId) {
+  var M = window._MS;
   var client = window.getClient(clientId);
   if (!client) return;
-
   window.sheet(
-    '<div style="padding:0 18px 4px">'
-    + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">'
-    +   window.clientAvatar(client, 32)
-    +   '<div>'
-    +     '<div style="font-family:Space Grotesk,sans-serif;font-size:18px;font-weight:900;line-height:1.1">New project</div>'
-    +     '<div style="font-size:11px;color:#5b5c58">' + client.company + ' · ' + client.name + '</div>'
-    +   '</div>'
+    '<div style="' + M.wrap + '">'
+    + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'
+    + window.clientAvatar(client, 32)
+    + '<div><div style="' + M.title + '"">New project</div>'
+    + '<div style="font-size:11px;color:#adada9">' + client.company + ' · ' + client.name + '</div></div>'
     + '</div>'
-
-    + '<label class="field-label">Project name</label>'
-    + '<input id="np-name" class="field-input" type="text" placeholder="Fall Campaign, Brand Refresh..." autocomplete="off" style="margin-bottom:10px">'
-
-    + '<label class="field-label" style="margin-bottom:6px">Status</label>'
-    + '<div style="display:flex;gap:6px;margin-bottom:16px">'
-    +   _statusPill('active',  'Active',    'np-status')
-    +   _statusPill('review',  'In review', 'np-status')
-    +   _statusPill('paused',  'Paused',    'np-status')
+    + '<div style="' + M.row + '"><div style="' + M.label + '">Project name</div>'
+    + '<input id="np-name" type="text" placeholder="Fall Campaign, Brand Refresh..." autocomplete="new-password" style="' + M.input + '"></div>'
+    + '<div style="' + M.label + ';margin-bottom:6px">Status</div>'
+    + '<div style="display:flex;gap:6px;margin-bottom:4px">'
+    + _statusPill('active', 'Active', 'np-status')
+    + _statusPill('review', 'In review', 'np-status')
+    + _statusPill('paused', 'Paused', 'np-status')
     + '</div>'
-
-    + '<button onclick="createProject(\'' + clientId + '\')" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:12px;padding:13px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:14px;cursor:pointer">Create project</button>'
+    + '<button onclick="createProject(\'' + clientId + '\')" class="hs" style="' + M.btnPri + '">Create project</button>'
     + '</div>'
   );
-
   window._selectedStatus = 'active';
   setTimeout(function() { var el = document.getElementById('np-name'); if (el) el.focus(); }, 60);
 }
