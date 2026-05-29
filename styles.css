@@ -82,11 +82,13 @@ body {
   margin: 16px;
   padding: 0 0 24px;
 }
+
+
 .sheet-handle {
   width: 36px; height: 4px;
   background: #e9e8e3;
   border-radius: 2px;
-  margin: 12px auto 20px;
+  margin: 16px auto 16px;
 }
 
 /* Badge */
