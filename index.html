@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Receipts — Client Approvals Without the Chaos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;900&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <div id="app-shell">
+
+    <nav id="desktop-sidebar" style="width:240px;min-width:240px;height:100vh;position:sticky;top:0;background:#0d0f0c;flex-direction:column;padding:28px 16px 24px;overflow-y:auto;">
+      <div style="display:flex;align-items:center;gap:10px;padding:0 8px;margin-bottom:36px;">
+        <div style="width:34px;height:34px;background:#cafd00;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span class="material-symbols-outlined fill-icon" style="font-size:18px;color:#3a4a00">receipt_long</span>
+        </div>
+        <div>
+          <div style="font-family:Space Grotesk,sans-serif;font-size:17px;font-weight:900;color:#f7f6f1;letter-spacing:-0.02em">Receipts</div>
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:rgba(247,246,241,0.35);font-family:Plus Jakarta Sans,sans-serif">The Paper Trail</div>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:2px;" id="desktop-nav"></div>
+      <div style="margin-top:20px;background:rgba(255,255,255,0.05);border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,0.08);">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+          <div class="status-dot" style="background:#cafd00;"></div>
+          <span style="font-family:Plus Jakarta Sans,sans-serif;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:rgba(202,253,0,0.7)">Waitlist</span>
+        </div>
+        <p style="font-family:Space Grotesk,sans-serif;font-size:13px;font-weight:700;color:#f7f6f1;margin:0 0 10px;line-height:1.3">Join the waitlist</p>
+        <input id="desktop-name" type="text" placeholder="Your name" style="width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;font-family:Manrope,sans-serif;font-size:12px;color:#f7f6f1;outline:none;box-sizing:border-box;margin-bottom:6px;" onfocus="this.style.borderColor='#cafd00'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+        <input id="desktop-email" type="email" placeholder="your@email.com" style="width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;font-family:Manrope,sans-serif;font-size:12px;color:#f7f6f1;outline:none;box-sizing:border-box;margin-bottom:6px;" onfocus="this.style.borderColor='#cafd00'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" onkeydown="if(event.key==='Enter')submitWaitlistDesktop()"/>
+        <button onclick="submitWaitlistDesktop()" style="width:100%;background:#cafd00;color:#3a4a00;padding:8px;border-radius:10px;border:none;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:12px;cursor:pointer;" class="hs">Join Waitlist</button>
+      </div>
+      <button onclick="resetDemo()" style="margin-top:10px;background:transparent;border:none;color:rgba(247,246,241,0.25);font-family:Plus Jakarta Sans,sans-serif;font-size:11px;cursor:pointer;padding:8px;display:flex;align-items:center;gap:6px;" class="hs">
+        <span class="material-symbols-outlined" style="font-size:14px">refresh</span>Reset Demo
+      </button>
+    </nav>
+
+    <div id="page-content"></div>
+  </div>
+
+  <nav id="bottom-nav">
+    <button class="nav-tab active" data-nav="dashboard" onclick="setView('dashboard')">
+      <div class="nav-icon-wrap"><span class="material-symbols-outlined" style="font-size:18px">home</span></div>
+      Home
+    </button>
+    <button class="nav-tab" data-nav="publisher" onclick="setView('publisher')">
+      <div class="nav-icon-wrap"><span class="material-symbols-outlined" style="font-size:18px">send</span></div>
+      Publish
+    </button>
+    <button class="nav-tab" data-nav="deals" onclick="setView('deals')">
+      <div class="nav-icon-wrap"><span class="material-symbols-outlined" style="font-size:18px">payments</span></div>
+      Deals
+    </button>
+    <button class="nav-tab" data-nav="more" onclick="openMoreSheet()">
+      <div class="nav-icon-wrap"><span class="material-symbols-outlined" style="font-size:18px">more_horiz</span></div>
+      More
+    </button>
+  </nav>
+
+  <form name="beta-waitlist" netlify netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="beta-waitlist"/>
+    <input type="text" name="bot-field"/>
+    <input type="text" name="name"/>
+    <input type="email" name="email"/>
+  </form>
+
+  <!-- 1. Data first -->
+  <script src="js/data/demo.js"></script>
+  <script src="js/data/copy.js"></script>
+
+  <!-- 2. Core: state depends on demo data, utils is standalone -->
+  <script src="js/core/state.js"></script>
+  <script src="js/core/utils.js"></script>
+
+  <!-- 3. Components: depend on utils + state -->
+  <script src="js/components/modals.js"></script>
+  <script src="js/components/cards.js"></script>
+  <script src="js/components/walkthrough.js"></script>
+
+  <!-- 4. Pages: depend on everything above -->
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/project.js"></script>
+  <script src="js/pages/portal.js"></script>
+  <script src="js/pages/deals.js"></script>
+
+  <!-- 5. Render engine last — wires it all together -->
+  <script src="js/core/render.js"></script>
+
+</body>
+</html>
