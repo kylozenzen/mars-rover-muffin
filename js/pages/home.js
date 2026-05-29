@@ -85,11 +85,12 @@ function homePage() {
     + '</div>';
 
   var emptyState = S.clients.length === 0
-    ? '<div style="text-align:center;padding:48px 24px;color:#5b5c58;">'
-    +   '<span class="material-symbols-outlined" style="font-size:40px;color:#adada9;display:block;margin-bottom:12px">group</span>'
-    +   '<div style="font-family:Space Grotesk,sans-serif;font-weight:700;font-size:16px;margin-bottom:6px">No clients yet</div>'
-    +   '<div style="font-size:13px;margin-bottom:20px">Add your first client to start sending review links.</div>'
-    +   '<button onclick="showNewClientModal()" class="hs" style="background:#cafd00;color:#3a4a00;border:none;border-radius:12px;padding:12px 24px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:14px;cursor:pointer">Add first client</button>'
+    ? '<div style="text-align:center;padding:48px 24px;">'
+    +   '<div style="width:56px;height:56px;background:#f1f1ec;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">'
+    +   '<span class="material-symbols-outlined" style="font-size:26px;color:#adada9">group</span></div>'
+    +   '<div style="font-family:Space Grotesk,sans-serif;font-weight:900;font-size:17px;margin-bottom:6px;color:#2e2f2c">No clients yet</div>'
+    +   '<div style="font-size:13px;color:#5b5c58;margin-bottom:20px;line-height:1.5">Add your first client to start<br>sending review links.</div>'
+    +   '<button onclick="showNewClientModal()" class="hs" style="background:#cafd00;color:#3a4a00;border:none;border-radius:12px;padding:11px 22px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:13px;cursor:pointer">Add first client</button>'
     + '</div>'
     : '';
 
@@ -140,23 +141,23 @@ function showNewClientModal() {
   window._selectedClientColor = 0;
 
   window.sheet(
-    '<div style="padding:0 20px 8px">'
-    + '<div style="font-family:Space Grotesk,sans-serif;font-size:20px;font-weight:900;margin-bottom:4px">New client</div>'
-    + '<div style="font-size:13px;color:#5b5c58;margin-bottom:20px">Client contact info — you can add projects after.</div>'
+    '<div style="padding:0 18px 4px">'
+    + '<div style="font-family:Space Grotesk,sans-serif;font-size:18px;font-weight:900;margin-bottom:2px">New client</div>'
+    + '<div style="font-size:12px;color:#5b5c58;margin-bottom:16px">Add contact info — projects come after.</div>'
 
     + '<label class="field-label">Company or brand</label>'
-    + '<input id="nc-company" class="field-input" type="text" placeholder="Nike, Adobe, Acme Co..." style="margin-bottom:14px">'
+    + '<input id="nc-company" class="field-input" type="text" placeholder="Nike, Adobe, Acme Co..." autocomplete="off" style="margin-bottom:10px">'
 
     + '<label class="field-label">Contact name</label>'
-    + '<input id="nc-name" class="field-input" type="text" placeholder="Sarah Chen" style="margin-bottom:14px">'
+    + '<input id="nc-name" class="field-input" type="text" placeholder="Sarah Chen" autocomplete="off" style="margin-bottom:10px">'
 
     + '<label class="field-label">Contact email</label>'
-    + '<input id="nc-email" class="field-input" type="email" placeholder="sarah@brand.com" style="margin-bottom:16px">'
+    + '<input id="nc-email" class="field-input" type="email" placeholder="sarah@brand.com" autocomplete="off" style="margin-bottom:12px">'
 
     + '<label class="field-label">Brand color</label>'
-    + '<div style="display:flex;gap:8px;margin-bottom:24px">' + swatches + '</div>'
+    + '<div style="display:flex;gap:6px;margin-bottom:16px">' + swatches + '</div>'
 
-    + '<button onclick="createClient()" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:14px;padding:14px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:15px;cursor:pointer">Add client</button>'
+    + '<button onclick="createClient()" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:12px;padding:13px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:14px;cursor:pointer">Add client</button>'
     + '</div>'
   );
 
@@ -212,26 +213,26 @@ function showNewProjectModal(clientId) {
   if (!client) return;
 
   window.sheet(
-    '<div style="padding:0 20px 8px">'
-    + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">'
-    +   window.clientAvatar(client, 36)
+    '<div style="padding:0 18px 4px">'
+    + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">'
+    +   window.clientAvatar(client, 32)
     +   '<div>'
     +     '<div style="font-family:Space Grotesk,sans-serif;font-size:18px;font-weight:900;line-height:1.1">New project</div>'
-    +     '<div style="font-size:12px;color:#5b5c58">' + client.company + ' · ' + client.name + '</div>'
+    +     '<div style="font-size:11px;color:#5b5c58">' + client.company + ' · ' + client.name + '</div>'
     +   '</div>'
     + '</div>'
 
-    + '<label class="field-label">Campaign or project name</label>'
-    + '<input id="np-name" class="field-input" type="text" placeholder="Fall Campaign, Brand Refresh..." style="margin-bottom:14px">'
+    + '<label class="field-label">Project name</label>'
+    + '<input id="np-name" class="field-input" type="text" placeholder="Fall Campaign, Brand Refresh..." autocomplete="off" style="margin-bottom:10px">'
 
-    + '<label class="field-label" style="margin-bottom:8px">Status</label>'
-    + '<div style="display:flex;gap:8px;margin-bottom:24px">'
-    +   _statusPill('active',  'Active',   'np-status')
-    +   _statusPill('review',  'In review','np-status')
-    +   _statusPill('paused',  'Paused',   'np-status')
+    + '<label class="field-label" style="margin-bottom:6px">Status</label>'
+    + '<div style="display:flex;gap:6px;margin-bottom:16px">'
+    +   _statusPill('active',  'Active',    'np-status')
+    +   _statusPill('review',  'In review', 'np-status')
+    +   _statusPill('paused',  'Paused',    'np-status')
     + '</div>'
 
-    + '<button onclick="createProject(\'' + clientId + '\')" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:14px;padding:14px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:15px;cursor:pointer">Create project</button>'
+    + '<button onclick="createProject(\'' + clientId + '\')" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:12px;padding:13px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:14px;cursor:pointer">Create project</button>'
     + '</div>'
   );
 

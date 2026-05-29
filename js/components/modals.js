@@ -41,18 +41,16 @@ function showShareSheet(url, name) {
 
 function openMoreSheet() {
   sheet(
-    '<div style="padding:0 20px 8px">'
-    + '<div style="font-family:Space Grotesk,sans-serif;font-size:20px;font-weight:900;margin-bottom:16px">More</div>'
-    + '<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">'
+    '<div style="padding:0 18px 4px">'
+    + '<div style="font-family:Space Grotesk,sans-serif;font-size:18px;font-weight:900;margin-bottom:14px">More</div>'
+    + '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">'
     + _moreRow('verified', 'The Vault', 'Certificates & approval history', "showComingSoon('vault')")
     + _moreRow('help', 'How it works', 'Quick walkthrough of Receipts', 'openHowItWorks()')
-    + _moreRow('refresh', 'Reset demo', 'Start fresh with sample data', 'resetDemo()')
+    + _moreRow('refresh', 'Reset', 'Clear all data and start fresh', 'resetDemo()')
     + '</div>'
-    + '<div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:16px;background:#f1f1ec;">'
-    + '<div style="font-family:Space Grotesk,sans-serif;font-size:13px;font-weight:700;margin-bottom:10px">Join the waitlist</div>'
-    + '<input id="more-name" type="text" placeholder="Your name" class="field-input" style="margin-bottom:8px">'
-    + '<input id="more-email" type="email" placeholder="your@email.com" class="field-input" style="margin-bottom:10px">'
-    + '<button onclick="submitWaitlistMore()" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;padding:10px;border-radius:10px;border:none;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:13px;cursor:pointer">Join Waitlist</button>'
+    + '<div style="background:#f1f1ec;border-radius:12px;padding:14px 16px;">'
+    + '<div style="font-size:11px;color:#adada9;font-family:Plus Jakarta Sans,sans-serif;margin-bottom:2px">Receipts is in beta</div>'
+    + '<div style="font-family:Space Grotesk,sans-serif;font-size:13px;font-weight:700;color:#2e2f2c">Built by Nobody Creative</div>'
     + '</div>'
     + '</div>'
   );
