@@ -140,24 +140,28 @@ function showNewClientModal() {
 
   window._selectedClientColor = 0;
 
+  var fieldStyle = 'width:100%;background:#f1f1ec;border:2px solid transparent;border-radius:8px;padding:8px 10px;font-family:Manrope,sans-serif;font-size:13px;outline:none;box-sizing:border-box;-webkit-appearance:none;';
+  var labelStyle = 'font-family:Plus Jakarta Sans,sans-serif;font-size:11px;font-weight:700;color:#5b5c58;display:block;margin-bottom:3px;';
+  var rowStyle   = 'margin-bottom:8px;';
+
   window.sheet(
-    '<div style="padding:0 18px 4px">'
-    + '<div style="font-family:Space Grotesk,sans-serif;font-size:18px;font-weight:900;margin-bottom:2px">New client</div>'
-    + '<div style="font-size:12px;color:#5b5c58;margin-bottom:16px">Add contact info — projects come after.</div>'
+    '<div style="padding:0 16px 4px">'
+    + '<div style="font-family:Space Grotesk,sans-serif;font-size:17px;font-weight:900;margin-bottom:2px">New client</div>'
+    + '<div style="font-size:12px;color:#adada9;margin-bottom:14px">Projects come after.</div>'
 
-    + '<label class="field-label">Company or brand</label>'
-    + '<input id="nc-company" class="field-input" type="text" placeholder="Nike, Adobe, Acme Co..." autocomplete="off" style="margin-bottom:10px">'
+    + '<div style="' + rowStyle + '"><label style="' + labelStyle + '">Company or brand</label>'
+    + '<input id="nc-company" type="text" placeholder="Nike, Adobe, Acme Co..." autocomplete="new-password" style="' + fieldStyle + '"></div>'
 
-    + '<label class="field-label">Contact name</label>'
-    + '<input id="nc-name" class="field-input" type="text" placeholder="Sarah Chen" autocomplete="off" style="margin-bottom:10px">'
+    + '<div style="' + rowStyle + '"><label style="' + labelStyle + '">Contact name</label>'
+    + '<input id="nc-name" type="text" placeholder="Sarah Chen" autocomplete="new-password" style="' + fieldStyle + '"></div>'
 
-    + '<label class="field-label">Contact email</label>'
-    + '<input id="nc-email" class="field-input" type="email" placeholder="sarah@brand.com" autocomplete="off" style="margin-bottom:12px">'
+    + '<div style="margin-bottom:12px"><label style="' + labelStyle + '">Contact email</label>'
+    + '<input id="nc-email" type="email" placeholder="sarah@brand.com" autocomplete="new-password" style="' + fieldStyle + '"></div>'
 
-    + '<label class="field-label">Brand color</label>'
-    + '<div style="display:flex;gap:6px;margin-bottom:16px">' + swatches + '</div>'
+    + '<label style="' + labelStyle + '">Brand color</label>'
+    + '<div style="display:flex;gap:5px;margin-bottom:14px">' + swatches + '</div>'
 
-    + '<button onclick="createClient()" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:12px;padding:13px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:14px;cursor:pointer">Add client</button>'
+    + '<button onclick="createClient()" class="hs" style="width:100%;background:#cafd00;color:#3a4a00;border:none;border-radius:10px;padding:12px;font-family:Plus Jakarta Sans,sans-serif;font-weight:800;font-size:14px;cursor:pointer">Add client</button>'
     + '</div>'
   );
 
